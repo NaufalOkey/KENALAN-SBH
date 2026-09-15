@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENALAN DENGAN SBH</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@450;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-default: #0f172a;
+            --primary-color: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.90);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-default);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px 16px;
+            color: var(--text-main);
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- ANIMASI LATAR BELAKANG (FLOATING BUBBLES) --- */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .bg-animation li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            animation: animateBubble 20s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        /* Mengatur posisi, ukuran, dan kecepatan masing-masing gelembung */
+        .bg-animation li:nth-child(1) { left: 10%; width: 80px; height: 80px; animation-delay: 0s; animation-duration: 12s; }
+        .bg-animation li:nth-child(2) { left: 20%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 15s; }
+        .bg-animation li:nth-child(3) { left: 35%; width: 50px; height: 50px; animation-delay: 4s; animation-duration: 10s; }
+        .bg-animation li:nth-child(4) { left: 50%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .bg-animation li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 3s; animation-duration: 12s; }
+        .bg-animation li:nth-child(6) { left: 80%; width: 110px; height: 110px; animation-delay: 2s; animation-duration: 22s; }
+        .bg-animation li:nth-child(7) { left: 90%; width: 40px; height: 40px; animation-delay: 5s; animation-duration: 14s; }
+
+        @keyframes animateBubble {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+                border-radius: 50%;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(720deg);
+                opacity: 0;
+                border-radius: 20%;
+            }
+        }
+        /* ----------------------------------------------- */
+
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 36px 28px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        h1 {
+            color: #0f172a;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        #pesan {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.7;
+            text-align: left;
+            white-space: pre-line;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        #pesan::-webkit-scrollbar {
+            width: 5px;
+        }
+        #pesan::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.03);
+            border-radius: 10px;
+        }
+        #pesan::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        button, .btn-link {
+            border: none;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        button:hover, .btn-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            filter: brightness(1.08);
+        }
+
+        button:active, .btn-link:active {
+            transform: translateY(0);
+        }
+
+        .btn-1 { background: linear-gradient(135deg, #ff416c, #ff4b2b); box-shadow: 0 8px 20px rgba(255, 65, 108, 0.25); }
+        .btn-2 { background: linear-gradient(135deg, #00b09b, #96c93d); box-shadow: 0 8px 20px rgba(0, 176, 155, 0.25); }
+        .btn-3 { background: linear-gradient(135deg, #2193b0, #6dd5ed); box-shadow: 0 8px 20px rgba(33, 147, 176, 0.25); }
+        .btn-4 { background: linear-gradient(135deg, #8a2387, #e94057); box-shadow: 0 8px 20px rgba(138, 35, 135, 0.25); }
+        
+        .btn-ig { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+            margin-top: 6px;
+            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.25);
+        }
+        
+        .btn-wa {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            margin-top: 6px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+        }
+
+        #btn-kembali {
+            background: linear-gradient(135deg, #475569, #1e293b);
+            display: none;
+            margin-top: 18px;
+            box-shadow: 0 8px 20px rgba(71, 85, 105, 0.25);
+        }
+
+        #media-container {
+            margin-bottom: 20px;
+            display: none;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        #media-container::-webkit-scrollbar {
+            width: 5px;
+        }
+        #media-container::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+
+        .media-box {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        iframe {
+            width: 100%;
+            height: 180px;
+            border-radius: 14px;
+            border: none;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animasi Latar Belakang Gelembung Cahaya -->
+    <ul class="bg-animation">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <div class="container">
+        <div class="badge-wrapper">
+            <span class="badge" id="badge-teks">Gerakan Pramuka</span>
+        </div>
+        <h1 id="judul">Saka Bakti Husada</h1>
+        <p id="pesan">"Penasaran SBH itu ngapain aja?"</p>
+        
+        <!-- Tempat munculnya foto/video atau tombol khusus -->
+        <div id="media-container"></div>
+        
+        <div class="button-group" id="menu-utama">
+            <button class="btn-1" onclick="tombolSatu()"><span>🌿</span> SBH ITU APA?</button>
+            <button class="btn-2" onclick="tombolDua()"><span>📸</span> KEGIATANNYA APA AJA?</button>
+            <button class="btn-3" onclick="tombolTiga()"><span>✨</span> SERUNYA GABUNG SBH</button>
+            <button class="btn-4" onclick="tombolEmpat()"><span>📞</span> KONTAK SBH</button>
+        </div>
+
+        <!-- Tombol Kembali ke Menu Utama -->
+        <button id="btn-kembali" onclick="kembaliKeMenu()"><span>←</span> KEMBALI KE MENU UTAMA</button>
+    </div>
+
+    <script>
+        function sembunyikanMenuUtama() {
+            document.getElementById('menu-utama').style.display = 'none';
+            document.getElementById('btn-kembali').style.display = 'flex';
+        }
+
+        function kembaliKeMenu() {
+            document.body.style.backgroundColor = "#0f172a";
+            document.getElementById('badge-teks').innerText = "Gerakan Pramuka";
+            document.getElementById('judul').innerText = "Saka Bakti Husada";
+            document.getElementById('pesan').innerText = '"Penasaran SBH itu ngapain aja?"';
+            
+            document.getElementById('menu-utama').style.display = 'flex';
+            document.getElementById('btn-kembali').style.display = 'none';
+            document.getElementById('media-container').style.display = 'none';
+            document.getElementById('media-container').innerHTML = '';
+        }
+
+        function tombolSatu() {
+            document.body.style.backgroundColor = "#221324";
+            document.getElementById('badge-teks').innerText = "Informasi SBH";
+            document.getElementById('judul').innerText = "🌿 APA ITU SBH?";
+            document.getElementById('pesan').innerText = 
+`Saka Bakti Husada (SBH) merupakan wadah kegiatan Pramuka untuk belajar, berlatih, dan mengembangkan keterampilan di bidang kesehatan.
+
+Di SBH, kamu nggak cuma belajar teori, tapi juga bisa praktik, berkegiatan, bekerja sama, dan mendapatkan pengalaman baru.
+
+🩺 DI SBH BISA NGAPAIN?
+
+🩹 P3K — belajar keterampilan pertolongan pertama
+🩺 Alat Kesehatan — mengenal dan mencoba penggunaannya secara aman
+🧼 Hidup Sehat — belajar menjaga kesehatan diri
+🌱 Kesehatan Lingkungan — ikut peduli terhadap lingkungan
+⛺ Kegiatan Pramuka — belajar disiplin, kerja sama, dan kepemimpinan
+
+👀 KENAPA HARUS COBA SBH?
+
+*Karena keterampilan kesehatan bukan cuma untuk diketahui, tapi juga untuk dipraktikkan.*
+
+Di sini kamu bisa belajar hal baru, bertemu teman baru, ikut kegiatan, dan mengembangkan diri.
+
+🔥 TERTARIK JADI BAGIAN DARI SBH?
+
+Yuk kenalan lebih jauh!
+📸 Lihat kegiatan kami
+📱 Hubungi kami`;
+            document.getElementById('media-container').style.display = 'none';
+            document.getElementById('media-container').innerHTML = '';
+            sembunyikanMenuUtama();
+        }
+
+        function tombolDua() {
+            document.body.style.backgroundColor = "#081c15";
+            document.getElementById('badge-teks').innerText = "Dokumentasi";
+            document.getElementById('judul').innerText = "KEGIATAN APA AJA?";
+            document.getElementById('pesan').innerText = "Berikut adalah dokumentasi foto dan video kegiatan seru di Saka Bakti Husada:";
+            
+            let mediaHTML = `
+                <img src="foto1.jpg" alt="Kegiatan SBH" class="media-box">
+                <img src="fotokegiatan1.jpg" alt="Kegiatan SBH" class="media-box">
+                <img src="fotokegiatan2.jpg" alt="Kegiatan SBH" class="media-box">
+                <iframe src="video11.mp4" title="Video Kegiatan SBH" allowfullscreen></iframe>
+            `;
+            let containerMedia = document.getElementById('media-container');
+            containerMedia.innerHTML = mediaHTML;
+            containerMedia.style.display = 'block';
+            
+            sembunyikanMenuUtama();
+        }
+
+        function tombolTiga() {
+            document.body.style.backgroundColor = "#0c2340";
+            document.getElementById('badge-teks').innerText = "Keseruan Anggota";
+            document.getElementById('judul').innerText = "SERUNYA GABUNG SBH";
+            document.getElementById('pesan').innerText = "Cerita seru, kebersamaan, dan pengalaman tak terlupakan dari para anggota selama bergabung di Saka Bakti Husada!";
+            
+            let mediaHTML = `
+                <img src="Fotoserunya.jpg" alt="Serunya Gabung SBH" class="media-box">
+                <img src="fotoserunya1.jpg" alt="Serunya Gabung SBH" class="media-box">
+                <iframe src="nama_video.mp4" title="Video Keseruan SBH" allowfullscreen></iframe>
+                <iframe src="nama_video1.mp4" title="Video Keseruan SBH" allowfullscreen></iframe>
+            `;
+            let containerMedia = document.getElementById('media-container');
+            containerMedia.innerHTML = mediaHTML;
+            containerMedia.style.display = 'block';
+
+            sembunyikanMenuUtama();
+        }
+
+        function tombolEmpat() {
+            document.body.style.backgroundColor = "#1a1625";
+            document.getElementById('badge-teks').innerText = "Hubungi Kami";
+            document.getElementById('judul').innerText = "📞 KONTAK & GRUP SBH";
+            document.getElementById('pesan').innerText = "Bergabunglah dengan grup WhatsApp resmi SBH atau kunjungi akun Instagram kami untuk informasi lebih lanjut:";
+            
+            let mediaHTML = `
+                <a href="https://wa.me/qr/4O7WP6HFLIRRL1" target="_blank" class="btn-link btn-wa">
+                    <span>👥</span> KONTAK WHATSAPP
+                </a>
+                <a href="https://www.instagram.com/sbh_kwartirpaciran?stkn=dGVyZDdrMHpsY3g2" target="_blank" class="btn-link btn-ig">
+                    <span>📷</span> KUNJUNGI INSTAGRAM
+                </a>
+            `;
+            let containerMedia = document.getElementById('media-container');
+            containerMedia.innerHTML = mediaHTML;
+            containerMedia.style.display = 'block';
+
+            sembunyikanMenuUtama();
+        }
+    </script>
+
+</body>
+</html>
